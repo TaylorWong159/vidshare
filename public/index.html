@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+    <script src="main.js" charset="utf-8"></script>
+
+
+    <div id="url">
+      <input id="url-input" type="text">
+    </div>
+    <div id="video-container">
+      <video id="video" controls src=""></video>
+    </div>
+    <div id="room-details">
+      <center>
+        <div id="room-id"></div>
+      </center>
+      <ul id="users">
+        Users:
+      </ul>
+    </div>
+    <div id="chat-container">
+      <ul id="chat"></ul>
+      <li id="message-box">
+        <input type="text" id="message-text"><button id="send">Send</button>
+      </li>
+    </div>
+  </body>
+</html>

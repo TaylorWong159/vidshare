@@ -1,0 +1,131 @@
+body {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  background: linear-gradient(45deg, #555, #333);
+  display: grid;
+  margin: 0;
+  grid-gap: 1rem;
+  padding: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 4rem repeat(5, 1fr);
+  grid-template-areas: "url url room" "video video room" "video video chat" "video video chat" "video video chat" "video video chat";
+  max-width: calc(100vw - 2rem);
+  height: calc(100vh - 2rem);
+}
+
+#video-container {
+  grid-area: video;
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  background: #EEE;
+}
+
+#video {
+  width: 100%;
+}
+
+#room-details {
+  grid-area: room;
+  background: #EEE;
+  height: calc(100% - 2rem);
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  font-size: 3rem;
+  text-align: center;
+}
+
+#room-id {
+  width: auto;
+  border-bottom: 2px solid #333;
+  display: inline-block;
+}
+
+#users {
+  list-style: none;
+  text-align: left;
+  overflow-y: scroll;
+  padding: 0;
+  height: calc(100% - 3rem);
+  margin: 0;
+  font-size: 2rem;
+}
+
+.user {
+  font-size: 1.5rem;
+}
+
+#chat-container {
+  grid-area: chat;
+  background: #EEE;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+#chat {
+  padding-inline-start: 0;
+  padding-bottom: 5rem;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-size: 1.5rem;
+  list-style: none;
+  overflow-y: scroll;
+  height: calc(100% - 5rem);
+}
+
+.message {
+  padding: 1rem;
+  background: #DDD;
+}
+
+.message:nth-child(odd) {
+  background: #BBB;
+}
+
+#message-box {
+  position: absolute;
+  display: block;
+  bottom: 0%;
+  width: 100%;
+  box-shadow: -1px 0 4px 0px #333;
+}
+
+
+#message-text {
+  font-size: 2rem;
+  width: calc(100% - 7.75rem);
+  padding: 0.25rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+#send {
+  font-size: 2rem;
+  padding: 0.25rem 0;
+  width: 5.75rem;
+  background-color: #7098ff;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+#send:hover {
+  cursor: pointer;
+}
+
+#url {
+  grid-area: url;
+  background: #EEE;
+  height: 100%;
+  width: 100%;
+}
+
+#url-input {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0.5rem 1rem 0 1rem;
+  width: calc(100% - 2rem);
+}

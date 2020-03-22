@@ -13,7 +13,6 @@ class Room {
     this.id = id;
     this.users = [];
     this.video = {
-      url: '',
       duration: 0,
       playing: false
     }
@@ -93,17 +92,6 @@ io.on('connection', (socket) => {
         }
       }
     }
-  });
-  socket.on('changeURL', (data) => {
-    for (let i = 0; i < rooms.length; i++) {
-      if (rooms[i].id == data.id) {
-        rooms[i].video.url = data.url;
-        for (let j = 0; j < rooms[i].users.length; j++) {
-          rooms[i].users[j].socket.emit('update', rooms[i].toJSON());
-        }
-      }
-    }
-    printRooms();
   });
   socket.on('seek', (data) => {
     console.log(data);

@@ -11,9 +11,6 @@ function sendMessage(message) {
 function changeRoom(room) {
   socket.emit('changeRoom', { old: id, new: room, username: username });
 }
-function changeURL(url) {
-  socket.emit('changeURL', { id: id, url: url });
-}
 function update(data) {
   changeDisabled = true;
 
@@ -31,15 +28,13 @@ function update(data) {
     $('#chat').append(`<li class="message">${data.messages[i]}</li>`);
   }
 
-  $('#url-input').val(data.video.url);
-  $(video).attr('src', data.video.url);
   video.currentTime = data.video.duration.toString();
   if (data.video.playing) {
     video.play();
   } else {
     video.pause();
   }
-  window.setTimeout(() => { changeDisabled = false }, 100);
+  window.setTimeout(() => { changeDisabled = false }, 1000);
 }
 
 $(document).ready(() => {
@@ -86,23 +81,21 @@ $(document).ready(() => {
   });
 
   $('#url-input').on('change', (e) => {
-    if (!changeDisabled) {
-      changeURL(e.currentTarget.value);
-    }
+    $(video).attr('src', URL.createObjectURL(e.currentTarget.files[0]));
   });
   video.onseeked = () => {
     if (!changeDisabled) {
-      socket.emit('seek', { id: id, video: { url: video.currentSrc, duration: video.currentTime, playing: video.paused } });
+      socket.emit('seek', { id: id, video: { duration: video.currentTime, playing: video.paused } });
     }
   };
   video.onpause = () => {
     if (!changeDisabled) {
-      socket.emit('seek', { id: id, video: { url: video.currentSrc, duration: video.currentTime, playing: false } });
+      socket.emit('seek', { id: id, video: { duration: video.currentTime, playing: false } });
     }
   };
   video.onplay = () => {
     if (!changeDisabled) {
-      socket.emit('seek', { id: id, video: { url: video.currentSrc, duration: video.currentTime, playing: true } });
+      socket.emit('seek', { id: id, video: { duration: video.currentTime, playing: true } });
     }
   };
 });
